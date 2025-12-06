@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPT-4 Code Assistor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="screen" id="authScreen">
+        <div class="auth-container">
+            <h1>GPT-4 Code Assistor</h1>
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="showLogin()">Login</button>
+                <button class="tab-btn" onclick="showSignup()">Sign Up</button>
+            </div>
+            
+            <div class="auth-form" id="loginForm">
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button onclick="login()" class="btn-primary">Login</button>
+            </div>
+            
+            <div class="auth-form" id="signupForm" style="display:none;">
+                <input type="text" id="signupName" placeholder="Full Name" required>
+                <input type="email" id="signupEmail" placeholder="Email" required>
+                <input type="password" id="signupPassword" placeholder="Password" required>
+                <button onclick="signup()" class="btn-primary">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div class="screen" id="mainScreen" style="display:none;">
+        <div class="header">
+            <h1>GPT-4 Code Assistor</h1>
+            <div class="user-info">
+                <span id="userName"></span>
+                <button onclick="logout()" class="btn-logout">Logout</button>
+            </div>
+        </div>
+
+        <div class="main-container">
+            <div class="code-section">
+                <div class="code-header">
+                    <h3>Code Input</h3>
+                    <select id="languageSelect">
+                        <option value="python">Python</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="java">Java</option>
+                        <option value="cpp">C++</option>
+                    </select>
+                </div>
+                <textarea id="codeInput" placeholder="Paste your code here..."></textarea>
+                <div class="code-actions">
+                    <button onclick="testCode()" class="btn-test">Test Code</button>
+                    <button onclick="debugCode()" class="btn-debug">Debug</button>
+                    <button onclick="fixCode()" class="btn-fix" id="fixBtn" style="display:none;">Fix with GPT-4</button>
+                    <button onclick="explainCode()" class="btn-explain">Explain Code</button>
+                    <button onclick="clearCode()" class="btn-clear">Clear</button>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <div class="results-header">
+                    <h3>Results</h3>
+                    <div class="status" id="codeStatus"></div>
+                </div>
+                
+                <div class="output-container">
+                    <div class="output-section">
+                        <h4>Output</h4>
+                        <pre id="codeOutput"></pre>
+                    </div>
+                    
+                    <div class="error-section" id="errorSection" style="display:none;">
+                        <h4>Errors</h4>
+                        <pre id="errorOutput"></pre>
+                    </div>
+                    
+                    <div class="gpt-section" id="gptSection" style="display:none;">
+                        <h4>GPT-4 Response</h4>
+                        <div id="gptOutput"></div>
+                        <button onclick="applyFix()" class="btn-apply" id="applyBtn" style="display:none;">Apply Fix</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GPT-4 Chat -->
+        <div class="chat-section">
+            <div class="chat-header">
+                <h3>Chat with GPT-4</h3>
+                <button onclick="toggleChat()" class="btn-toggle" id="chatToggle">▼</button>
+            </div>
+            <div class="chat-container" id="chatContainer">
+                <div class="chat-messages" id="chatMessages"></div>
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Ask GPT-4 about your code..." onkeypress="handleChatEnter(event)">
+                    <button onclick="sendChatMessage()" class="btn-send">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://js.puter.com/v2/"></script>
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
